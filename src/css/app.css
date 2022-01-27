@@ -12,7 +12,6 @@
 #app .container {
   width: 376px;
   height: 666px;
-  z-index: 100;
 
   background: white;
   border-radius: 3px;
@@ -21,5 +20,48 @@
 
 #app .container-view {
   padding: 20px;
+  background-color: rgb(255, 250, 250);
+  z-index: -1;
 }
 
+#app .tabs{
+  display: flex;
+  border: 1px solid black;
+}
+
+#app .left-tab{
+    padding: 5px;
+    flex: 1;
+    font-size: 15px;
+} 
+
+#app .right-tab{
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  flex: 2
+}
+
+#app .calls-list-container {
+  margin: 10px 0 10px 0;
+  border: 1px solid black;
+} 
+
+#app .footer-container-view{
+  position: fixed;
+  bottom: 179px;
+  height: 75px;
+  width: 376px;
+  border: 1px solid black;
+  z-index: 100;
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#app .footer-icons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
