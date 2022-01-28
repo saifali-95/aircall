@@ -1,7 +1,6 @@
 .archived-calls-list-container {
   margin: 10px 0 10px 0;
-  
-} 
+}
 
 .archived-date {
   text-align: center;
@@ -21,7 +20,7 @@
 }
 
 .archived-call-left {
-  flex: 1
+  flex: 1;
 }
 
 .archived-call-center {
@@ -42,6 +41,6 @@
   padding: 2px;
 }
 
-.archived-call-right{
-  flex: 1
+.archived-call-right {
+  flex: 1;
 }

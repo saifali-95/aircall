@@ -15,7 +15,7 @@
 
   background: white;
   border-radius: 3px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .9);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.9);
 }
 
 #app .container-view {
@@ -25,37 +25,37 @@
   min-height: 500px;
 }
 
-#app .tabs{
+#app .tabs {
   display: flex;
 }
 
-#app .left-tab{
+#app .left-tab {
   padding: 5px;
   flex: 2;
   font-size: 18px;
-} 
+}
 
-#app .all-calls-selected{
- border-bottom: 3px solid green;
- cursor: pointer;
- font-weight: bold;
-} 
-
-#app .all-calls{
+#app .all-calls-selected {
+  border-bottom: 3px solid green;
   cursor: pointer;
-} 
+  font-weight: bold;
+}
 
-#app .archived-calls{
+#app .all-calls {
   cursor: pointer;
 }
 
-#app .archived-calls-selected{
+#app .archived-calls {
+  cursor: pointer;
+}
+
+#app .archived-calls-selected {
   border-bottom: 3px solid green;
   font-weight: bold;
   cursor: pointer;
 }
 
-#app .right-tab{
+#app .right-tab {
   display: flex;
   justify-content: space-around;
   padding: 5px;
@@ -63,7 +63,7 @@
   align-items: center;
   align-content: center;
 }
-#app .footer-container-view{
+#app .footer-container-view {
   height: 10vh;
   max-height: 70px;
   position: fixed;
@@ -75,7 +75,7 @@
   justify-content: center;
 }
 
-#app .footer-icons{
+#app .footer-icons {
   display: flex;
   justify-content: space-around;
   align-items: center;

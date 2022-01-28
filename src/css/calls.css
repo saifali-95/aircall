@@ -1,7 +1,6 @@
 .calls-list-container {
   margin: 10px 0 10px 0;
-  
-} 
+}
 
 .date {
   text-align: center;
@@ -21,7 +20,7 @@
 }
 
 .call-left {
-  flex: 1
+  flex: 1;
 }
 
 .call-center {
@@ -42,6 +41,6 @@
   padding: 2px;
 }
 
-.call-right{
-  flex: 1
+.call-right {
+  flex: 1;
 }

@@ -14,6 +14,8 @@ const App = () => {
   const [allCallSelected, setallCallSelected] = useState(true);
   const [allArchivedCallSelected, setArchivedCallSelected] = useState(false);
 
+
+  //Fetch list of calls from the API  
   useEffect(() => {
     const getCalls = async () => {
       try {
@@ -28,23 +30,42 @@ const App = () => {
 
     getCalls();
   }, []);
-
+  
+  //Function to Archive the Call
+  const archiveCall = async(id) => {
+    try {
+      await axios.post(`https://aircall-job.herokuapp.com/activities/${id}`, {
+        is_archived: true
+      });
+      const callDetails = await axios.get(
+        "https://aircall-job.herokuapp.com/activities"
+      );
+      setActiveCallsList(callDetails.data); 
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  //Map list of unarchived calls to Calls component
   const activeCalls = activeCallsList.map(call => {
     return (
       !call.is_archived && (
         <Calls
           key={call.id}
+          id = {call.id}
           time={call.created_at}
           direction={call.direction}
           from={call.from}
           to={call.to}
           via={call.via}
           archived={call.is_archived}
+          archiveCall = {archiveCall}
         />
       )
     );
   });
-
+  
+  //Map list of archived calls to Archived component
   const archivedCalls = activeCallsList.map(call => {
     return (
       call.is_archived && (
@@ -60,7 +81,8 @@ const App = () => {
       )
     );
   });
-
+  
+  //Change style of the tab when All Calls tab is selected
   const getAllCalls = () => {
     setAllCallStyle("all-calls-selected");
     setArchivedCallStyle("archived-calls");
@@ -68,6 +90,7 @@ const App = () => {
     setArchivedCallSelected(false);
   }
 
+  //Change style of the tab when Archived Calls tab is selected
   const getAllArchivedCalls = () => {
     setAllCallStyle("all-calls");
     setArchivedCallStyle("archived-calls-selected");
