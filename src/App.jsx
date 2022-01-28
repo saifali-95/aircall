@@ -5,6 +5,7 @@ import regeneratorRuntime from "regenerator-runtime";
 
 import Header from "./Header.jsx";
 import Calls from "./Calls.jsx";
+import Archived from "./Archived.jsx";
 
 const App = () => {
   const [activeCallsList, setActiveCallsList] = useState([]);
@@ -47,7 +48,7 @@ const App = () => {
   const archivedCalls = activeCallsList.map(call => {
     return (
       call.is_archived && (
-        <Calls
+        <Archived
           key={call.id}
           time={call.created_at}
           direction={call.direction}
