@@ -35,6 +35,26 @@
   font-size: 18px;
 } 
 
+#app .all-calls-selected{
+ border-bottom: 3px solid green;
+ cursor: pointer;
+ font-weight: bold;
+} 
+
+#app .all-calls{
+  cursor: pointer;
+} 
+
+#app .archived-calls{
+  cursor: pointer;
+}
+
+#app .archived-calls-selected{
+  border-bottom: 3px solid green;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 #app .right-tab{
   display: flex;
   justify-content: space-around;

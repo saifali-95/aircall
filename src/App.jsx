@@ -8,6 +8,10 @@ import Calls from "./Calls.jsx";
 
 const App = () => {
   const [activeCallsList, setActiveCallsList] = useState([]);
+  const [allCallStyle, setAllCallStyle]= useState("all-calls-selected");
+  const [archivedCallStyle, setArchivedCallStyle]= useState("archived-calls");
+  const [allCallSelected, setallCallSelected] = useState(true);
+  const [allArchivedCallSelected, setArchivedCallSelected] = useState(false);
 
   useEffect(() => {
     const getCalls = async () => {
@@ -20,10 +24,27 @@ const App = () => {
         console.log(error);
       }
     };
+
     getCalls();
   }, []);
 
   const activeCalls = activeCallsList.map(call => {
+    return (
+      !call.is_archived && (
+        <Calls
+          key={call.id}
+          time={call.created_at}
+          direction={call.direction}
+          from={call.from}
+          to={call.to}
+          via={call.via}
+          archived={call.is_archived}
+        />
+      )
+    );
+  });
+
+  const archivedCalls = activeCallsList.map(call => {
     return (
       call.is_archived && (
         <Calls
@@ -39,6 +60,20 @@ const App = () => {
     );
   });
 
+  const getAllCalls = () => {
+    setAllCallStyle("all-calls-selected");
+    setArchivedCallStyle("archived-calls");
+    setallCallSelected(true);
+    setArchivedCallSelected(false);
+  }
+
+  const getAllArchivedCalls = () => {
+    setAllCallStyle("all-calls");
+    setArchivedCallStyle("archived-calls-selected");
+    setArchivedCallSelected(true);
+    setallCallSelected(false);
+  }
+
   return (
     <div className="container">
       <div className="header">
@@ -50,11 +85,12 @@ const App = () => {
             <h1>Activity Feed</h1>
           </div>
           <div className="right-tab">
-            <div className="all-calls">All Calls</div>
-            <div className="archived-calls">Archived Calls</div>
+            <div onClick={getAllCalls} className={allCallStyle}>All Calls</div>
+            <div onClick={getAllArchivedCalls} className={archivedCallStyle}>Archived Calls</div>
           </div>
         </div>
-        <div className="calls-list-container">{activeCalls}</div>
+        <div className="calls-list-container">{allCallSelected && activeCalls}</div>
+        <div className="calls-list-container">{allArchivedCallSelected && archivedCalls}</div>
       </div>
       <div className="footer-container-view">
         <div className="footer-icons">
