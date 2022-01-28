@@ -1,12 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
+import regeneratorRuntime from "regenerator-runtime";
 
 import Header from "./Header.jsx";
+import Calls from "./Calls.jsx";
 
 const App = () => {
+  const [activeCallsList, setActiveCallsList] = useState([]);
+
+  useEffect(() => {
+    const getCalls = async () => {
+      try {
+        const callDetails = await axios.get(
+          "https://aircall-job.herokuapp.com/activities"
+        );
+        setActiveCallsList(callDetails.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCalls();
+  }, []);
+
+  const activeCalls = activeCallsList.map(call => {
+    return (
+      call.is_archived && (
+        <Calls
+          key={call.id}
+          time={call.created_at}
+          direction={call.direction}
+          from={call.from}
+          to={call.to}
+          via={call.via}
+          archived={call.is_archived}
+        />
+      )
+    );
+  });
+
   return (
     <div className="container">
-      <Header />
+      <div className="header">
+        <Header />
+      </div>
       <div className="container-view">
         <div className="tabs">
           <div className="left-tab">
@@ -17,21 +54,14 @@ const App = () => {
             <div className="archived-calls">Archived Calls</div>
           </div>
         </div>
-        <div className="calls-list-container">
-          <div className="call-container">
-            <div className="date">
-              ................ 17- July - 2020 .....................
-            </div>
-            <h1>Call 1</h1>
-          </div>
-        </div>
+        <div className="calls-list-container">{activeCalls}</div>
       </div>
       <div className="footer-container-view">
         <div className="footer-icons">
-          <i class="fas fa-phone-alt fa-lg"></i>
-          <i class="far fa-user fa-lg"></i>
-          <i class="fas fa-cog fa-lg"></i>
-          <i class="fas fa-record-vinyl fa-lg"></i>
+          <i className="fas fa-phone-alt fa-lg"></i>
+          <i className="far fa-user fa-lg"></i>
+          <i className="fas fa-cog fa-lg"></i>
+          <i className="fas fa-record-vinyl fa-lg"></i>
         </div>
       </div>
     </div>

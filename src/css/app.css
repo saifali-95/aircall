@@ -22,37 +22,32 @@
   padding: 20px;
   background-color: rgb(255, 250, 250);
   z-index: -1;
+  min-height: 500px;
 }
 
 #app .tabs{
   display: flex;
-  border: 1px solid black;
 }
 
 #app .left-tab{
-    padding: 5px;
-    flex: 1;
-    font-size: 15px;
+  padding: 5px;
+  flex: 2;
+  font-size: 18px;
 } 
 
 #app .right-tab{
   display: flex;
   justify-content: space-around;
   padding: 5px;
-  flex: 2
+  flex: 2;
+  align-items: center;
+  align-content: center;
 }
-
-#app .calls-list-container {
-  margin: 10px 0 10px 0;
-  border: 1px solid black;
-} 
-
 #app .footer-container-view{
+  height: 10vh;
+  max-height: 70px;
   position: fixed;
-  bottom: 179px;
-  height: 75px;
   width: 376px;
-  border: 1px solid black;
   z-index: 100;
   background-color: pink;
   display: flex;
